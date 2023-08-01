@@ -1,0 +1,24 @@
+name: New discussion
+on:
+  discussion:
+    types: [created]
+jobs:
+  spread-github-announcements:
+    if: github.event.discussion.category.node_id == 'DIC_kwDOF2FhEs4CQX_F' # Is announcement 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compile message
+        id: CompileMessage
+        uses: actions/github-script@v6
+        with:
+          result-encoding: string
+          script: |
+            const discussion = context.payload.discussion
+            return '['+discussion.title+']('+discussion.html_url+')'
+      - name: Spread message
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: '${{ secrets.DISCORD_ANNOUNCEMENTWEBHOOK }}'
+          method: 'POST'
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"content": "${{steps.CompileMessage.outputs.result}}"}'
