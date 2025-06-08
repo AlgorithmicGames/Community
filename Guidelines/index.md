@@ -3,4 +3,4 @@
 
 More to follow, this is only getting started.
 
-[<-- Go back](https://ai-tournaments.github.io/Community/)
+[<-- Go back](/Community/)
