@@ -4,7 +4,7 @@ on:
     types: [created]
 jobs:
   spread-github-announcements:
-    if: github.event.discussion.category.node_id == 'DIC_kwDOF2FhEs4CQX_F' # Is announcement 
+    if: github.event.discussion.category.node_id == 'DIC_kwDOKCNqZ84CYRsS' # Is announcement 
     runs-on: ubuntu-latest
     steps:
       - name: Compile message
